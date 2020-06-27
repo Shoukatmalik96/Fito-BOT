@@ -31,26 +31,75 @@ time.sleep(2.4)
 
 #creating Dictinaries
 
-person_dict = json.loads(sys.argv[1])
-isNewUser_dict = person_dict['isNewUser'];
-email_dict = person_dict['PatientEmail'];
-pass_dict = person_dict['PatientVATnumber'];
-#printing dictionaries
+person_model = json.loads(sys.argv[1])
+product_model= person_model['products'];
+isNewUser_model = person_model['isNewUser'];
+email_model = person_model['PatientEmail'];
+pass_model = person_model['PatientVATnumber'];
+#creating product url
+# https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan
+# http://www.fitotouch.com/fitoki/F- 001 - Jing Fang Bai Du Wan
+# http://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan
+for name in product_model:
+    fitoName = name.get('fitoName');
+    fitoCode = name.get('fitoCode');
+    fitoQuantity = name.get('fitoQuantity');
+    provider = name.get('providerName');
+    providerCode = name.get('providerCode');
+    x = fitoName.split()
+    product_name = "{}{}{}{}-{}-{}-{}-{}".format(x[0].lower(), x[1], x[2].lower(), x[3].lower(), x[4].lower(),x[5].lower(), x[6].lower(), x[7].lower())
+    order_url = "{}/{}/{}".format(base_url, provider.lower(), product_name)
 
-print(person_dict)
-print(email_dict)
-print(pass_dict)
-time.sleep(2.4)
-if isNewUser_dict == 'false':
+#printing dictionaries
+print(product_model)
+print(person_model)
+print(email_model)
+print(pass_model)
+
+#check isEmpty string
+def empty(mystring):
+    assert isinstance(mystring, str)
+    if len(mystring) == 0:
+        return True
+    else:
+        return False
+
+# product list iteration
+
+
+if isNewUser_model == 'false':
     driver.get('https://www.fitotouch.com/account/login')
-    time.sleep(2.4)
+    #time.sleep(2.4)
     driver.switch_to.frame("accountFrame")
-    time.sleep(2.4)
-    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/input').send_keys(email_dict)
-    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys(pass_dict)
+    #time.sleep(2.4)
+    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/input').send_keys(email_model)
+    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys(pass_model)
     driver.find_element_by_xpath('//*[@id="root"]/div/div/div/button').click()
+    #redirect to home page
+    driver.get(base_url)
+    #filter categories
+    if provider.lower() == 'fiveseasons':
+        driver.get('https://www.fitotouch.com/fiveseasons')
+    elif provider.lower() == 'giovanni-maciocia':
+        driver.get('https://www.fitotouch.com/giovanni-maciocia')
+    elif provider.lower() == 'soria-composor':
+        driver.get('https://www.fitotouch.com/soria-composor')
+    elif provider.lower() == 'soria-chinasor':
+        driver.get('https://www.fitotouch.com/soria-chinasor')
+    elif provider.lower() == 'bluepoppy':
+        driver.get('https://www.fitotouch.com/bluepoppy')
+    elif provider.lower() == 'fitoki':
+        driver.get('https://www.fitotouch.com/fitoki')
     time.sleep(2.4)
-    driver.get("https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan")
+    #driver.get("https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan")
+    driver.get(order_url)
+    time.sleep(2.4)
+    driver.execute_script("window.scrollTo(0, 150)")
+    time.sleep(2.4)
+    driver.find_element_by_xpath('/html/body/div[1]/main/article/section/div[2]/div/section/article/section[1]/section/div/div[3]/div/div').click()
+    time.sleep(2.4)
+    # redirect user to Card
+    driver.get('https://www.fitotouch.com/cart')
 else :
  driver.get('https://www.fitotouch.com/account/login/create')
  time.sleep(2.4)
@@ -58,17 +107,15 @@ else :
  time.sleep(2.4)
  driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div[1]/div/input').send_keys("danat")
  driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div[2]/div/input').send_keys("acount")
- driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys(email_dict)
- driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/div/input').send_keys(pass_dict)
- driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[4]/div/input').send_keys(pass_dict)
+ driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys(email_model)
+ driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/div/input').send_keys(pass_model)
+ driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[4]/div/input').send_keys(pass_model)
  driver.find_element_by_xpath('//*[@id="root"]/div/div/div/button').click()
  driver.get("https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan")
 #product_category=['driver.get("https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan")','driver.get("https://www.fitotouch.com/soria-chinasor/style-02-hzewl")']
 driver.execute_script("window.scrollTo(0, 150)")
 time.sleep(2.4)
 cart = driver.find_element_by_xpath('/html/body/div[1]/main/article/section/div[2]/div/section/article/section[1]/section/div/div[3]/div/div')
-
-
 
 #     if qty > 0:
 #
@@ -154,4 +201,3 @@ cart = driver.find_element_by_xpath('/html/body/div[1]/main/article/section/div[
 # #for x in productsURL:
 # #driver.execute_script("window.open('https://www.fitotouch.com/qitouch');")
 # #driver.find_element_by_class_name("sqs-add-to-cart-button-wrapper").click()
-
