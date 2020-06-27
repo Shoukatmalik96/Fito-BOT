@@ -30,25 +30,34 @@ time.sleep(2.4)
 #driver.find_element_by_xpath('//*[@id="header"]/div[2]/div/div[2]/div[3]/div[1]/a/span').click()
 
 #creating Dictinaries
+
 person_dict = json.loads(sys.argv[1])
 isNewUser_dict = person_dict['isNewUser'];
 email_dict = person_dict['PatientEmail'];
 pass_dict = person_dict['PatientVATnumber'];
+#printing dictionaries
+
+print(person_dict)
+print(email_dict)
+print(pass_dict)
 time.sleep(2.4)
 if isNewUser_dict == 'false':
     driver.get('https://www.fitotouch.com/account/login')
     time.sleep(2.4)
-    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/input').send_keys('shoukatmalik@gmail.com')
-    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys('danat123$')
+    driver.switch_to.frame("accountFrame")
+    time.sleep(2.4)
+    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div/input').send_keys(email_dict)
+    driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys(pass_dict)
     driver.find_element_by_xpath('//*[@id="root"]/div/div/div/button').click()
+    time.sleep(2.4)
     driver.get("https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan")
 else :
  driver.get('https://www.fitotouch.com/account/login/create')
  time.sleep(2.4)
  driver.switch_to.frame("accountFrame")
  time.sleep(2.4)
- driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div[1]/div/input').send_keys("test")
- driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div[2]/div/input').send_keys("user")
+ driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div[1]/div/input').send_keys("danat")
+ driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[1]/div[2]/div/input').send_keys("acount")
  driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div/input').send_keys(email_dict)
  driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/div/input').send_keys(pass_dict)
  driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[4]/div/input').send_keys(pass_dict)
