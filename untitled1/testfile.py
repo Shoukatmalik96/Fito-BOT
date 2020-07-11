@@ -172,6 +172,36 @@ if isNewUser_dict == 'false':
             print(fito_url)
             driver.get('https://www.fitotouch.com/soria-chinasor')
         elif provider.lower() == 'bluepoppy':
+            product_code = 'blue-poppy'
+            third = fitoName.split(' ')
+            fito_length = len(third)
+            if fito_length <= 1:
+                fito_url = "{}-{}".format(product_code, third[0])
+                print(fito_url)
+            elif fito_length <= 2:
+                fito_url = "{}-{}-{}-{}".format(product_code, third[0], third[1])
+                print(fito_url)
+            elif fito_length <= 3:
+                fito_url = "{}-{}-{}-{}".format(product_code, third[0], third[1], third[2])
+                print(fito_url)
+            elif fito_length <= 4:
+                fito_url = "{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3])
+                print(fito_url)
+            elif fito_length <= 5:
+                fito_url = "{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4])
+                print(fito_url)
+            elif fito_length <= 6:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4],third[5])
+                print(fito_url)
+            elif fito_length <= 7:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4], third[5], third[6])
+                print(fito_url)
+            elif fito_length <= 8:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4], third[5], third[6], third[7])
+                print(fito_url)
+            elif fito_length <= 9:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4], third[5], third[6], third[7], third[8])
+                print(fito_url)
             driver.get('https://www.fitotouch.com/bluepoppy')
         elif provider.lower() == 'fitoki':
             x = fitoName.split('-')
