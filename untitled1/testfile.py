@@ -235,6 +235,8 @@ if isNewUser_dict == 'false':
             elif fito_length <= 9:
                 fito_url = "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(x[0],x[1], third[0], third[1], third[2], third[3],third[4], third[5], third[6], third[7], third[8])
                 print(fito_url)
+        elif provider.lower() == 'shop':
+            fito_url = fitoCode.lower()
             driver.get('https://www.fitotouch.com/fitoki')
             time.sleep(2.4)
     #driver.get("https://www.fitotouch.com/fitoki/f-001-jing-fang-bai-du-wan")
