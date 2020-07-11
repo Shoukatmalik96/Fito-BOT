@@ -100,10 +100,76 @@ if isNewUser_dict == 'false':
                 print(fito_url)
             driver.get('https://www.fitotouch.com/fiveseasons')
         elif provider.lower() == 'giovanni-maciocia':
+            third = fitoName.split()
+            fito_length = len(third)
+            if fito_length <= 1:
+                fito_url = "{}".format(third[0])
+                print(fito_url)
+            elif fito_length <= 2:
+                fito_url = "{}-{}".format(third[0], third[1])
+                print(fito_url)
+            elif fito_length <= 3:
+                fito_url = "{}-{}-{}".format(third[0], third[1], third[2])
+                print(fito_url)
+            elif fito_length <= 4:
+                fito_url = "{}-{}-{}-{}".format(third[0], third[1], third[2], third[3])
+                print(fito_url)
+            elif fito_length <= 5:
+                fito_url = "{}-{}-{}-{}-{}".format(third[0], third[1], third[2], third[3], third[4])
+                print(fito_url)
+            elif fito_length <= 6:
+                fito_url = "{}-{}-{}-{}-{}-{}".format(third[0], third[1], third[2], third[3], third[4], third[5])
+                print(fito_url)
+            elif fito_length <= 7:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}".format(third[0], third[1], third[2], third[3], third[4], third[5],third[6])
+                print(fito_url)
+            elif fito_length <= 8:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}".format(third[0], third[1], third[2], third[3], third[4], third[5], third[6], third[7])
+                print(fito_url)
+            elif fito_length <= 9:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}-{}".format(third[0], third[1], third[2], third[3], third[4],third[5], third[6], third[7], third[8])
+                print(fito_url)
             driver.get('https://www.fitotouch.com/giovanni-maciocia')
         elif provider.lower() == 'soria-composor':
+            x = fitoName.split('-')
+            y = x[0].split()
+            fito_url = "{}-{}".format(y[0], y[1])
+            print(fito_url)
             driver.get('https://www.fitotouch.com/soria-composor')
         elif provider.lower() == 'soria-chinasor':
+            x = fitoName.split('-')
+            y = x[0].split()
+            product_code = "{}-{}".format(y[0], y[1])
+            third = x[1].split()
+            fito_length = len(third)
+            if fito_length <= 1:
+                fito_url = "{}-{}".format(product_code, third[0])
+                print(fito_url)
+            elif fito_length <= 2:
+                fito_url = "{}-{}-{}-{}".format(product_code, third[0], third[1])
+                print(fito_url)
+            elif fito_length <= 3:
+                fito_url = "{}-{}-{}-{}".format(product_code, third[0], third[1], third[2])
+                print(fito_url)
+            elif fito_length <= 4:
+                fito_url = "{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3])
+                print(fito_url)
+            elif fito_length <= 5:
+                fito_url = "{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4])
+                print(fito_url)
+            elif fito_length <= 6:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4], third[5])
+                print(fito_url)
+            elif fito_length <= 7:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4],third[5], third[6])
+                print(fito_url)
+            elif fito_length <= 8:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3], third[4],third[5], third[6], third[7])
+                print(fito_url)
+            elif fito_length <= 9:
+                fito_url = "{}-{}-{}-{}-{}-{}-{}-{}-{}-{}".format(product_code, third[0], third[1], third[2], third[3],third[4], third[5], third[6], third[7], third[8])
+                print(fito_url)
+            print(fito_url)
             driver.get('https://www.fitotouch.com/soria-chinasor')
         elif provider.lower() == 'bluepoppy':
             driver.get('https://www.fitotouch.com/bluepoppy')
@@ -111,7 +177,7 @@ if isNewUser_dict == 'false':
             x = fitoName.split('-')
             y = len(x)
             third = x[2].split()
-            fito_length = len(third)
+            fito_length= len(third)
             if fito_length <= 1:
                 fito_url = "{}-{}-{}".format(x[0],x[1], third[0])
                 print(fito_url)
